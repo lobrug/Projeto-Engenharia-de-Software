@@ -5,7 +5,6 @@ from codigo.xg import calcular_xg
 class TestXG(unittest.TestCase):
     def test_criterio1_xg_entre_zero_e_um(self):
         finalizacao = {
-            "coordenadas": [100.0, 40.0],
             "distancia": 4.0,
             "angulo": 1.5707453534,
             "parte_corpo": "Right Foot"
@@ -16,7 +15,6 @@ class TestXG(unittest.TestCase):
 
     def test_criterio2_mesmas_saidas_para_mesmas_entradas(self):
         finalizacao = {
-            "coordenadas": [100.0, 40.0],
             "distancia": 4.0,
             "angulo": 1.5707453534,
             "parte_corpo": "Right Foot"
@@ -27,7 +25,6 @@ class TestXG(unittest.TestCase):
 
     def test_criterio3_rejeita_finalizacao_com_dados_ausentes(self):
         finalizacao = {
-            "coordenadas": [100.0, 40.0],
             "distancia": 4.0,
             "angulo": 1.5707453534,
             "parte_corpo": "Right Foot"
