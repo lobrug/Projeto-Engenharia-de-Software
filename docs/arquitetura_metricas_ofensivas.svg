@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="titulo descricao">
+<svg xmlns="http://www.w3.org/2000/svg" width="2140" height="1200" viewBox="0 0 2140 1200" role="img" aria-labelledby="titulo descricao">
   <title id="titulo">Arquitetura do analisador de métricas ofensivas</title>
-  <desc id="descricao">Diagrama de componentes com um JSON único de partida e finalizações, módulos Python para xG, conversões e relatório, treinamento externo do modelo e testes unitários. As conexões possuem trajetos separados, sem cruzamentos entre setas.</desc>
+  <desc id="descricao">Os arquivos JSON da StatsBomb são lidos pelo módulo de leitura, que entrega as finalizações e os dados da partida para os módulos de xG, conversões e relatório. Os coeficientes do xG vêm de um treinamento feito fora da aplicação.</desc>
   <defs>
     <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 Z" fill="#50677b"/>
@@ -29,150 +29,159 @@
     ]]></style>
   </defs>
 
-  <!-- Fundo e título -->
-  <rect width="1800" height="1200" fill="#ffffff"/>
-  <rect width="1800" height="9" fill="#153a58"/>
+  <rect width="2140" height="1200" fill="#ffffff"/>
+  <rect width="2140" height="9" fill="#153a58"/>
   <text x="54" y="59" class="main-title">Analisador de métricas ofensivas</text>
-  <text x="55" y="86" class="subtitle">Arquitetura de componentes e dependências · fluxos de dados separados por corredor</text>
-  <!-- Limites dos subsistemas -->
-  <rect x="422" y="128" width="963" height="249" rx="15" fill="#fbfaf5" stroke="#ceba94" stroke-width="2" stroke-dasharray="8 6"/>
-  <text x="448" y="160" class="section">MODELO DE IA · TREINAMENTO EXTERNO</text>
-  <text x="448" y="181" class="section-detail">Dados históricos e treinamento separados da aplicação Python</text>
+  <text x="55" y="86" class="subtitle">Componentes, responsabilidades e caminho dos dados</text>
 
+  <!-- Entrada: arquivos da StatsBomb (hudl/open-data) -->
   <rect x="35" y="431" width="380" height="539" rx="15" fill="#f5f9fc" stroke="#acc4d3" stroke-width="2" stroke-dasharray="8 6"/>
-  <text x="61" y="465" class="section">FONTE DE DADOS</text>
-  <text x="61" y="486" class="section-detail">JSON único da partida</text>
+  <text x="61" y="465" class="section">FONTE DE DADOS · dados/</text>
+  <text x="61" y="486" class="section-detail">Arquivos do StatsBomb Open Data</text>
 
-  <rect x="475" y="431" width="1005" height="539" rx="15" fill="#fcfdff" stroke="#a1b6c6" stroke-width="2" stroke-dasharray="8 6"/>
-  <text x="501" y="465" class="section">APLICAÇÃO PYTHON · codigo/</text>
-  <text x="501" y="486" class="section-detail">Módulos de cálculo e geração do relatório</text>
-
-  <rect x="1510" y="558" width="255" height="309" rx="15" fill="#f4faf7" stroke="#a7c8bb" stroke-width="2" stroke-dasharray="8 6"/>
-  <text x="1536" y="590" class="section">SAÍDA</text>
-
-  <rect x="475" y="1004" width="1005" height="148" rx="15" fill="#f8f9fc" stroke="#aebccd" stroke-width="2" stroke-dasharray="8 6"/>
-  <text x="501" y="1035" class="section">TESTES UNITÁRIOS · tests/</text>
-  <text x="501" y="1054" class="section-detail">Verificação de regras, resultados e validações dos módulos</text>
-
-  <!-- Conexões desenhadas ANTES dos componentes: cada uma usa um corredor próprio. -->
-  <!-- Treinamento: duas setas horizontais e uma única descida independente. -->
-  <path d="M 692 255 H 765" class="ia-arrow"/>
-  <path d="M 1012 255 H 1098" class="ia-arrow"/>
-  <path d="M 1210 316 V 397 H 793 V 554" class="ia-arrow coeff-arrow"/>
-
-  <!-- Entrada JSON: portas exclusivas nas duas funções. -->
-  <path d="M 365 647 H 570" class="arrow"/>
-  <path d="M 365 833 H 570" class="arrow"/>
-
-  <!-- Dependências das funções até o relatório: trajetos horizontais paralelos. -->
-  <path d="M 920 686 H 1080" class="arrow"/>
-  <path d="M 920 833 H 1080" class="arrow"/>
-
-  <!-- Metadados da partida pelo corredor inferior, sem cruzar os outros fluxos. -->
-  <path d="M 280 889 V 944 H 1345 V 877" class="arrow"/>
-
-  <!-- Saída de texto -->
-  <path d="M 1420 742 H 1548" class="arrow"/>
-
-  <!-- Etiquetas com fundo sólido para alta legibilidade -->
-  <rect x="886" y="382" width="284" height="23" rx="5" fill="#fffdf8"/>
-  <text x="1028" y="398" text-anchor="middle" class="label">coeficientes incorporados ao xg.py</text>
-  <rect x="429" y="628" width="96" height="21" rx="5" fill="#fcfdff"/>
-  <text x="477" y="643" class="label" text-anchor="middle">finalização</text>
-  <rect x="429" y="815" width="96" height="21" rx="5" fill="#fcfdff"/>
-  <text x="477" y="830" class="label" text-anchor="middle">finalizações</text>
-  <rect x="949" y="663" width="106" height="21" rx="5" fill="#fcfdff"/>
-  <text x="1002" y="678" class="label" text-anchor="middle">xG por chute</text>
-  <rect x="963" y="810" width="77" height="21" rx="5" fill="#fcfdff"/>
-  <text x="1001" y="825" class="label" text-anchor="middle">gols</text>
-  <rect x="1062" y="931" width="213" height="22" rx="5" fill="#fcfdff"/>
-  <text x="1168" y="946" class="label" text-anchor="middle">metadados da partida</text>
-  <rect x="1442" y="719" width="90" height="21" rx="5" fill="#ffffff"/>
-  <text x="1487" y="734" class="label" text-anchor="middle">texto</text>
-
-  <!-- Bases de dados de treinamento, em cilindro -->
-  <path d="M 461 231 C 461 212 692 212 692 231 L 692 296 C 692 315 461 315 461 296 Z" fill="#f0e7d6" stroke="#a78345" stroke-width="2.3"/>
-  <ellipse cx="576.5" cy="231" rx="115.5" ry="19" fill="#f9f2e5" stroke="#a78345" stroke-width="2.3"/>
-  <text x="576" y="269" text-anchor="middle" class="name" style="font-size:19px">Dados históricos</text>
-  <text x="576" y="293" text-anchor="middle" class="description">Eventos StatsBomb</text>
-
-  <!-- Treinamento externo -->
-  <rect x="765" y="202" width="247" height="114" rx="12" fill="#fff7e7" stroke="#a78345" stroke-width="2.3"/>
-  <text x="888" y="242" text-anchor="middle" class="name">Modelo de IA</text>
-  <text x="888" y="269" text-anchor="middle" class="description">Regressão logística</text>
-  <text x="888" y="293" text-anchor="middle" class="description">treinada externamente</text>
-
-  <!-- Artefato de pesos (não é serviço de IA em tempo de execução) -->
-  <path d="M 1120 211 H 1281 L 1304 234 V 316 H 1120 Z" fill="#f8f0df" stroke="#a78345" stroke-width="2.3"/>
-  <path d="M 1281 211 V 234 H 1304" fill="none" stroke="#a78345" stroke-width="2.3"/>
-  <text x="1210" y="258" text-anchor="middle" class="name" style="font-size:19px">Coeficientes</text>
-  <text x="1210" y="282" text-anchor="middle" class="description">pesos estimados</text>
-  <text x="1210" y="301" text-anchor="middle" class="description">para o cálculo</text>
-
-  <!-- JSON único com partida e finalizações -->
   <path d="M 80 544 C 80 521 365 521 365 544 L 365 868 C 365 889 80 889 80 868 Z" fill="#e8f3fa" stroke="#4a89a8" stroke-width="2.4"/>
   <ellipse cx="222.5" cy="544" rx="142.5" ry="23" fill="#f4faff" stroke="#4a89a8" stroke-width="2.4"/>
-  <text x="109" y="593" class="kind">ARQUIVO ÚNICO · JSON</text>
-  <text x="109" y="622" class="name">Dados da partida</text>
+  <text x="109" y="593" class="kind">ARQUIVOS · JSON</text>
+  <text x="109" y="622" class="name">Dados StatsBomb</text>
   <path d="M 109 638 H 338" class="divider"/>
-  <text x="109" y="679" class="mono">partida</text>
-  <text x="109" y="705" class="description">nome · data · equipes</text>
+  <text x="109" y="679" class="mono">partidas_copa_2022.json</text>
+  <text x="109" y="705" class="description">id · data · mandante · visitante</text>
   <path d="M 109 729 H 338" class="divider"/>
-  <text x="109" y="766" class="mono">finalizacoes[]</text>
-  <text x="109" y="792" class="description">equipe · resultado</text>
-  <text x="109" y="825" class="description">distância · ângulo</text>
-  <text x="109" y="848" class="description">parte do corpo</text>
+  <text x="109" y="766" class="mono">eventos_&lt;id&gt;.json</text>
+  <text x="109" y="792" class="description">todos os eventos do jogo</text>
+  <text x="109" y="825" class="description">chutes: equipe · posição</text>
+  <text x="109" y="848" class="description">resultado · parte do corpo</text>
 
-  <!-- xg.py -->
-  <rect x="570" y="554" width="350" height="156" rx="12" class="module-outline"/>
-  <path d="M 582 554 H 908 Q 920 554 920 566 V 597 H 570 V 566 Q 570 554 582 554 Z" class="module-header"/>
-  <path d="M 570 597 H 920" stroke="#47759e" stroke-width="1.2"/>
-  <text x="594" y="582" class="kind">MÓDULO · xg.py</text>
-  <text x="594" y="631" class="name">Calcular xG</text>
-  <text x="594" y="660" class="mono">calcular_xg(finalizacao)</text>
-  <text x="594" y="690" class="description">Valida entrada e estima P(gol).</text>
+  <!-- Aplicação Python -->
+  <rect x="475" y="431" width="1345" height="539" rx="15" fill="#fcfdff" stroke="#a1b6c6" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="501" y="465" class="section">APLICAÇÃO PYTHON · codigo/</text>
+  <text x="501" y="486" class="section-detail">main.py chama a leitura, os cálculos e o relatório, nessa ordem</text>
 
-  <!-- conversoes.py -->
-  <rect x="570" y="765" width="350" height="155" rx="12" class="module-outline"/>
-  <path d="M 582 765 H 908 Q 920 765 920 777 V 807 H 570 V 777 Q 570 765 582 765 Z" class="module-header"/>
-  <path d="M 570 807 H 920" stroke="#47759e" stroke-width="1.2"/>
-  <text x="594" y="792" class="kind">MÓDULO · conversoes.py</text>
-  <text x="594" y="841" class="name">Contar conversões</text>
-  <text x="594" y="870" class="mono">contar_conversoes(...)</text>
-  <text x="594" y="898" class="description">Conta gols da equipe selecionada.</text>
+  <!-- leitura.py -->
+  <rect x="500" y="592" width="270" height="285" rx="12" class="module-outline"/>
+  <path d="M 512 592 H 758 Q 770 592 770 604 V 637 H 500 V 604 Q 500 592 512 592 Z" class="module-header"/>
+  <path d="M 500 637 H 770" stroke="#47759e" stroke-width="1.2"/>
+  <text x="522" y="620" class="kind">MÓDULO · leitura.py</text>
+  <text x="522" y="676" class="name">Ler os dados</text>
+  <text x="522" y="710" class="small-mono">extrair_finalizacoes(eventos)</text>
+  <text x="522" y="733" class="small-mono">extrair_partida(partidas, id)</text>
+  <path d="M 522 759 H 748" stroke="#c6d5e1" stroke-width="1.2"/>
+  <text x="522" y="791" class="description">Filtra os chutes (sem a</text>
+  <text x="522" y="816" class="description">disputa de pênaltis) e calcula</text>
+  <text x="522" y="841" class="description">distância e ângulo do gol.</text>
 
-  <!-- relatorio.py -->
-  <rect x="1080" y="592" width="340" height="285" rx="12" fill="#f1f8f5" stroke="#398270" stroke-width="2.4"/>
-  <path d="M 1092 592 H 1408 Q 1420 592 1420 604 V 637 H 1080 V 604 Q 1080 592 1092 592 Z" fill="#ddf0e9"/>
-  <path d="M 1080 637 H 1420" stroke="#398270" stroke-width="1.2"/>
-  <text x="1104" y="620" class="kind">MÓDULO · relatorio.py</text>
-  <text x="1104" y="676" class="name">Gerar relatório</text>
-  <text x="1104" y="710" class="small-mono">gerar_relatorio(partida,</text>
-  <text x="1104" y="733" class="small-mono">                finalizacoes)</text>
-  <path d="M 1104 759 H 1395" stroke="#bfdacf" stroke-width="1.2"/>
-  <text x="1104" y="791" class="description">Reúne xG e gols por equipe.</text>
-  <text x="1104" y="816" class="description">Formata um resumo textual</text>
-  <text x="1104" y="841" class="description">das métricas ofensivas.</text>
+  <path d="M 365 735 H 500" class="arrow"/>
+  <rect x="387" y="712" width="96" height="21" rx="5" fill="#fcfdff"/>
+  <text x="435" y="727" class="label" text-anchor="middle">JSON bruto</text>
 
-  <!-- Documento textual final -->
-  <path d="M 1548 625 H 1670 L 1700 655 V 807 H 1548 Z" fill="#eff8f3" stroke="#398270" stroke-width="2.4"/>
-  <path d="M 1670 625 V 655 H 1700" fill="none" stroke="#398270" stroke-width="2.4"/>
-  <text x="1570" y="671" class="kind">ARQUIVO TEXTO</text>
-  <text x="1570" y="707" class="name">Relatório</text>
-  <path d="M 1570 762 H 1677 M 1570 779 H 1655 M 1570 796 H 1681" stroke="#8eb7a6" stroke-width="3" stroke-linecap="round"/>
+  <!-- Saídas da leitura -->
+  <path d="M 770 647 H 910" class="arrow"/>
+  <path d="M 770 833 H 910" class="arrow"/>
+  <path d="M 635 877 V 944 H 1685 V 877" class="arrow"/>
+  <rect x="792" y="624" width="96" height="21" rx="5" fill="#fcfdff"/>
+  <text x="840" y="639" class="label" text-anchor="middle">finalização</text>
+  <rect x="792" y="810" width="96" height="21" rx="5" fill="#fcfdff"/>
+  <text x="840" y="825" class="label" text-anchor="middle">finalizações</text>
+  <rect x="1402" y="931" width="213" height="22" rx="5" fill="#fcfdff"/>
+  <text x="1508" y="946" class="label" text-anchor="middle">partida e finalizações</text>
 
-  <!-- Testes agrupados abaixo, sem confundir dependência de teste com fluxo de dados -->
+  <!-- Testes -->
+  <rect x="475" y="1004" width="1345" height="148" rx="15" fill="#f8f9fc" stroke="#aebccd" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="501" y="1035" class="section">TESTES UNITÁRIOS · testes/</text>
+  <text x="501" y="1054" class="section-detail">Critérios de aceitação das histórias e regras da leitura</text>
+
   <rect x="509" y="1070" width="295" height="55" rx="9" fill="#f0f4f9" stroke="#a0b2c7" stroke-width="1.8"/>
-  <text x="529" y="1094" class="small-mono" style="font-weight:700">test_xg.py</text>
-  <text x="529" y="1115" class="description" style="font-size:13px">Faixa [0,1] · validações · repetição</text>
+  <text x="529" y="1094" class="small-mono" style="font-weight:700">test_leitura.py</text>
+  <text x="529" y="1115" class="description" style="font-size:13px">Formato, distância, ângulo, pênaltis</text>
 
-  <rect x="824" y="1070" width="270" height="55" rx="9" fill="#f0f4f9" stroke="#a0b2c7" stroke-width="1.8"/>
-  <text x="843" y="1094" class="small-mono" style="font-weight:700">test_conversoes.py</text>
-  <text x="843" y="1115" class="description" style="font-size:13px">Contagem de gols por equipe</text>
+  <g transform="translate(340 0)">
+    <!-- Treinamento do modelo, fora da aplicação -->
+    <rect x="422" y="128" width="963" height="249" rx="15" fill="#fbfaf5" stroke="#ceba94" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="448" y="160" class="section">MODELO DE IA · TREINAMENTO EXTERNO</text>
+    <text x="448" y="181" class="section-detail">Feito à parte; a aplicação só usa os coeficientes resultantes</text>
 
-  <rect x="1114" y="1070" width="335" height="55" rx="9" fill="#f0f4f9" stroke="#a0b2c7" stroke-width="1.8"/>
-  <text x="1134" y="1094" class="small-mono" style="font-weight:700">test_relatorio.py</text>
-  <text x="1134" y="1115" class="description" style="font-size:13px">Conteúdo e formatação do resumo</text>
+    <path d="M 692 255 H 765" class="ia-arrow"/>
+    <path d="M 1012 255 H 1098" class="ia-arrow"/>
+    <path d="M 1210 316 V 397 H 793 V 554" class="ia-arrow coeff-arrow"/>
+    <rect x="886" y="382" width="284" height="23" rx="5" fill="#fffdf8"/>
+    <text x="1028" y="398" text-anchor="middle" class="label">coeficientes incorporados ao xg.py</text>
+
+    <path d="M 461 231 C 461 212 692 212 692 231 L 692 296 C 692 315 461 315 461 296 Z" fill="#f0e7d6" stroke="#a78345" stroke-width="2.3"/>
+    <ellipse cx="576.5" cy="231" rx="115.5" ry="19" fill="#f9f2e5" stroke="#a78345" stroke-width="2.3"/>
+    <text x="576" y="269" text-anchor="middle" class="name" style="font-size:19px">Dados históricos</text>
+    <text x="576" y="293" text-anchor="middle" class="description">Eventos StatsBomb</text>
+
+    <rect x="765" y="202" width="247" height="114" rx="12" fill="#fff7e7" stroke="#a78345" stroke-width="2.3"/>
+    <text x="888" y="242" text-anchor="middle" class="name">Modelo de IA</text>
+    <text x="888" y="269" text-anchor="middle" class="description">Regressão logística</text>
+    <text x="888" y="293" text-anchor="middle" class="description">treinada externamente</text>
+
+    <path d="M 1120 211 H 1281 L 1304 234 V 316 H 1120 Z" fill="#f8f0df" stroke="#a78345" stroke-width="2.3"/>
+    <path d="M 1281 211 V 234 H 1304" fill="none" stroke="#a78345" stroke-width="2.3"/>
+    <text x="1210" y="258" text-anchor="middle" class="name" style="font-size:19px">Coeficientes</text>
+    <text x="1210" y="282" text-anchor="middle" class="description">pesos estimados</text>
+    <text x="1210" y="301" text-anchor="middle" class="description">para o cálculo</text>
+
+    <!-- xg.py e conversoes.py até o relatório -->
+    <path d="M 920 686 H 1080" class="arrow"/>
+    <path d="M 920 833 H 1080" class="arrow"/>
+    <path d="M 1420 742 H 1548" class="arrow"/>
+    <rect x="949" y="663" width="106" height="21" rx="5" fill="#fcfdff"/>
+    <text x="1002" y="678" class="label" text-anchor="middle">xG por chute</text>
+    <rect x="963" y="810" width="77" height="21" rx="5" fill="#fcfdff"/>
+    <text x="1001" y="825" class="label" text-anchor="middle">gols</text>
+    <rect x="1442" y="719" width="90" height="21" rx="5" fill="#ffffff"/>
+    <text x="1487" y="734" class="label" text-anchor="middle">texto</text>
+
+    <rect x="570" y="554" width="350" height="156" rx="12" class="module-outline"/>
+    <path d="M 582 554 H 908 Q 920 554 920 566 V 597 H 570 V 566 Q 570 554 582 554 Z" class="module-header"/>
+    <path d="M 570 597 H 920" stroke="#47759e" stroke-width="1.2"/>
+    <text x="594" y="582" class="kind">MÓDULO · xg.py</text>
+    <text x="594" y="631" class="name">Calcular xG</text>
+    <text x="594" y="660" class="mono">calcular_xg(finalizacao)</text>
+    <text x="594" y="690" class="description">Valida entrada e estima P(gol).</text>
+
+    <rect x="570" y="765" width="350" height="155" rx="12" class="module-outline"/>
+    <path d="M 582 765 H 908 Q 920 765 920 777 V 807 H 570 V 777 Q 570 765 582 765 Z" class="module-header"/>
+    <path d="M 570 807 H 920" stroke="#47759e" stroke-width="1.2"/>
+    <text x="594" y="792" class="kind">MÓDULO · conversoes.py</text>
+    <text x="594" y="841" class="name">Contar conversões</text>
+    <text x="594" y="870" class="mono">contar_conversoes(...)</text>
+    <text x="594" y="898" class="description">Conta gols da equipe selecionada.</text>
+
+    <rect x="1080" y="592" width="340" height="285" rx="12" fill="#f1f8f5" stroke="#398270" stroke-width="2.4"/>
+    <path d="M 1092 592 H 1408 Q 1420 592 1420 604 V 637 H 1080 V 604 Q 1080 592 1092 592 Z" fill="#ddf0e9"/>
+    <path d="M 1080 637 H 1420" stroke="#398270" stroke-width="1.2"/>
+    <text x="1104" y="620" class="kind">MÓDULO · relatorio.py</text>
+    <text x="1104" y="676" class="name">Gerar relatório</text>
+    <text x="1104" y="710" class="small-mono">gerar_relatorio(partida,</text>
+    <text x="1104" y="733" class="small-mono">                finalizacoes)</text>
+    <path d="M 1104 759 H 1395" stroke="#bfdacf" stroke-width="1.2"/>
+    <text x="1104" y="791" class="description">Reúne xG e gols por equipe.</text>
+    <text x="1104" y="816" class="description">Formata um resumo textual</text>
+    <text x="1104" y="841" class="description">das métricas ofensivas.</text>
+
+    <!-- Saída -->
+    <rect x="1510" y="558" width="255" height="309" rx="15" fill="#f4faf7" stroke="#a7c8bb" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="1536" y="590" class="section">SAÍDA</text>
+    <path d="M 1548 625 H 1670 L 1700 655 V 807 H 1548 Z" fill="#eff8f3" stroke="#398270" stroke-width="2.4"/>
+    <path d="M 1670 625 V 655 H 1700" fill="none" stroke="#398270" stroke-width="2.4"/>
+    <text x="1570" y="671" class="kind">TERMINAL</text>
+    <text x="1570" y="707" class="name">Relatório</text>
+    <path d="M 1570 762 H 1677 M 1570 779 H 1655 M 1570 796 H 1681" stroke="#8eb7a6" stroke-width="3" stroke-linecap="round"/>
+
+    <rect x="509" y="1070" width="295" height="55" rx="9" fill="#f0f4f9" stroke="#a0b2c7" stroke-width="1.8"/>
+    <text x="529" y="1094" class="small-mono" style="font-weight:700">test_xg.py</text>
+    <text x="529" y="1115" class="description" style="font-size:13px">Faixa [0,1] · validações · repetição</text>
+
+    <rect x="824" y="1070" width="270" height="55" rx="9" fill="#f0f4f9" stroke="#a0b2c7" stroke-width="1.8"/>
+    <text x="843" y="1094" class="small-mono" style="font-weight:700">test_conversoes.py</text>
+    <text x="843" y="1115" class="description" style="font-size:13px">Contagem de gols por equipe</text>
+
+    <rect x="1114" y="1070" width="335" height="55" rx="9" fill="#f0f4f9" stroke="#a0b2c7" stroke-width="1.8"/>
+    <text x="1134" y="1094" class="small-mono" style="font-weight:700">test_relatorio.py</text>
+    <text x="1134" y="1115" class="description" style="font-size:13px">Conteúdo e formatação do resumo</text>
+  </g>
 
   <!-- Legenda -->
   <line x1="55" y1="1175" x2="97" y2="1175" class="arrow"/>
