@@ -8,8 +8,8 @@ class TestRelatorio(unittest.TestCase):
     def test_criterio1_relatorio_identifica_partida_e_metricas_por_equipe(self):
         partida = {"nome": "Brasil x Argentina", "data": "05/11/2026", "equipes": ["Brasil", "Argentina"]}
         finalizacoes = [
-            {"equipe": "Brasil", "resultado": "Goal", "coordenadas": [100.0, 40.0], "distancia": 4.0, "angulo": 1.5707453534, "parte_corpo": "Right Foot"},
-            {"equipe": "Argentina", "resultado": "Saved", "coordenadas": [90.0, 30.0], "distancia": 31.6, "angulo": 0.2449786631, "parte_corpo": "Left Foot"}
+            {"equipe": "Brasil", "resultado": "Goal", "distancia": 4.0, "angulo": 1.5707453534, "parte_corpo": "Right Foot"},
+            {"equipe": "Argentina", "resultado": "Saved", "distancia": 31.6, "angulo": 0.2449786631, "parte_corpo": "Left Foot"}
         ]
         relatorio = gerar_relatorio(partida, finalizacoes)
         self.assertIn("Brasil x Argentina", relatorio)
@@ -22,9 +22,9 @@ class TestRelatorio(unittest.TestCase):
     def test_criterio2_relatorio_apresenta_valores_calculados(self):
         partida = {"nome": "Brasil x Argentina", "data": "05/11/2026", "equipes": ["Brasil", "Argentina"]}
         finalizacoes = [
-            {"equipe": "Brasil", "resultado": "Goal", "coordenadas": [100.0, 40.0], "distancia": 4.0, "angulo": 1.5707453534, "parte_corpo": "Right Foot"},
-            {"equipe": "Brasil", "resultado": "Saved", "coordenadas": [90.0, 30.0], "distancia": 31.6, "angulo": 0.2449786631, "parte_corpo": "Left Foot"},
-            {"equipe": "Brasil", "resultado": "Goal", "coordenadas": [110.0, 38.0], "distancia": 10.2, "angulo": 0.7266423406, "parte_corpo": "Head"}
+            {"equipe": "Brasil", "resultado": "Goal", "distancia": 4.0, "angulo": 1.5707453534, "parte_corpo": "Right Foot"},
+            {"equipe": "Brasil", "resultado": "Saved", "distancia": 31.6, "angulo": 0.2449786631, "parte_corpo": "Left Foot"},
+            {"equipe": "Brasil", "resultado": "Goal", "distancia": 10.2, "angulo": 0.7266423406, "parte_corpo": "Head"}
         ]
         relatorio = gerar_relatorio(partida, finalizacoes)
         gols = contar_conversoes(finalizacoes, "Brasil")
@@ -34,7 +34,7 @@ class TestRelatorio(unittest.TestCase):
     def test_criterio3_gera_relatorio_com_equipe_sem_finalizacoes(self):
         partida = {"nome": "Brasil x Argentina", "data": "05/11/2026", "equipes": ["Brasil", "Argentina"]}
         finalizacoes = [
-            {"equipe": "Brasil", "resultado": "Goal", "coordenadas": [100.0, 40.0], "distancia": 4.0, "angulo": 1.5707453534, "parte_corpo": "Right Foot"}
+            {"equipe": "Brasil", "resultado": "Goal", "distancia": 4.0, "angulo": 1.5707453534, "parte_corpo": "Right Foot"}
         ]
         relatorio = gerar_relatorio(partida, finalizacoes)
         self.assertIn("Argentina | Finalizações: 0 | Gols: 0 | xG total: 0.00", relatorio)
