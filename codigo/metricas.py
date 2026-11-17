@@ -11,6 +11,9 @@ class MetricaOfensiva(ABC):
     def calcular(self, finalizacoes, equipe):
         """Calcula a métrica escolhida"""
 
+    def formatar(self, valor):
+        return str(valor)
+
 
 class MetricaConversoes(MetricaOfensiva):
     nome = "Gols"
@@ -23,3 +26,6 @@ class MetricaXG(MetricaOfensiva):
 
     def calcular(self, finalizacoes, equipe):
         return sum(calcular_xg(finalizacao) for finalizacao in finalizacoes if finalizacao["equipe"] == equipe)
+
+    def formatar(self, valor):
+        return f"{valor:.2f}"

@@ -11,7 +11,8 @@ def gerar_relatorio(partida, finalizacoes, estrategias=None):
 
         for estrategia in estrategias:
             valor = estrategia.calcular(finalizacoes, equipe)
-            linha += f" | {estrategia.nome}: {valor}"
+            resultado = estrategia.formatar(valor)
+            linha += f" | {estrategia.nome}: {resultado}"
         linhas.append(linha)
 
     return "\n".join(linhas)
