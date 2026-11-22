@@ -37,3 +37,12 @@ class TestXG(unittest.TestCase):
             with self.subTest(campo_ausente=campo):
                 with self.assertRaises(ValueError):
                     calcular_xg(finalizacao1)
+
+    def test_criterio3_rejeita_parte_do_corpo_desconhecida(self):
+        finalizacao = {
+            "distancia": 4.0,
+            "angulo": 1.5707453534,
+            "parte_corpo": "No Touch"
+        }
+        with self.assertRaises(ValueError):
+            calcular_xg(finalizacao)

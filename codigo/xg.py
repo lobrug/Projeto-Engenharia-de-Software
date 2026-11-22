@@ -17,6 +17,9 @@ def calcular_xg(finalizacao):
         "Right Foot": 0.503542941703537,
     }
 
+    if finalizacao["parte_corpo"] not in PESOS_PARTE_CORPO:
+        raise ValueError(f"Parte do corpo desconhecida: {finalizacao['parte_corpo']}")
+
     z = (
         INTERCEPTO
         - COEF_DISTANCIA * finalizacao["distancia"]
