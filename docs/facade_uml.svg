@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="720" viewBox="0 0 1240 720">
+  <title>Padrão Facade - AnalisadorPartida</title>
+  <defs>
+    <marker id="dep" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto">
+      <path d="M1 1 L11 6 L1 11" fill="none" stroke="#3d4f60" stroke-width="1.6"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #1c2b3a; font-size: 14px; }
+      .titulo { font-size: 24px; font-weight: 700; }
+      .nome { font-size: 16px; font-weight: 700; }
+      .estereotipo { font-size: 12px; fill: #5b6b7a; }
+      .mono { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 13px; }
+      .rotulo { font-size: 12px; fill: #3d4f60; font-style: italic; }
+      .caixa { fill: #ffffff; stroke: #3d4f60; stroke-width: 1.5; }
+      .fachada { fill: #eaf2fb; stroke: #2f6496; stroke-width: 2; }
+      .cabecalho { fill: #f2f4f6; stroke: #3d4f60; stroke-width: 1.5; }
+      .cabecalho-fachada { fill: #d6e6f6; stroke: #2f6496; stroke-width: 2; }
+      .linha { stroke: #3d4f60; stroke-width: 1.5; }
+      .dep { fill: none; stroke: #3d4f60; stroke-width: 1.5; stroke-dasharray: 7 5; marker-end: url(#dep); }
+    </style>
+  </defs>
+
+  <rect width="1240" height="720" fill="#ffffff"/>
+  <text x="30" y="42" class="titulo">Padrão Facade — AnalisadorPartida</text>
+
+  <!-- Cliente -->
+  <rect x="40" y="250" width="200" height="40" class="cabecalho"/>
+  <text x="140" y="266" text-anchor="middle" class="estereotipo">«módulo» cliente</text>
+  <text x="140" y="283" text-anchor="middle" class="nome">main.py</text>
+  <rect x="40" y="290" width="200" height="40" class="caixa"/>
+  <text x="52" y="315" class="mono">main()</text>
+
+  <!-- Fachada -->
+  <rect x="330" y="210" width="380" height="44" class="cabecalho-fachada"/>
+  <text x="520" y="228" text-anchor="middle" class="estereotipo">«facade»</text>
+  <text x="520" y="246" text-anchor="middle" class="nome">AnalisadorPartida</text>
+  <rect x="330" y="254" width="380" height="54" class="fachada"/>
+  <text x="342" y="276" class="mono">- pasta_dados: str</text>
+  <text x="342" y="296" class="mono">- arquivo_partidas: str</text>
+  <rect x="330" y="308" width="380" height="76" class="fachada"/>
+  <text x="342" y="330" class="mono">+ analisar(id_partida, estrategias=None): str</text>
+  <text x="342" y="350" class="mono">- _carregar_partida(id_partida): dict</text>
+  <text x="342" y="370" class="mono">- _carregar_finalizacoes(id_partida): list</text>
+
+  <path d="M 240 300 H 330" class="dep"/>
+  <text x="285" y="292" text-anchor="middle" class="rotulo">usa</text>
+
+  <!-- Subsistema -->
+  <rect x="790" y="70" width="420" height="620" rx="6" fill="#fafbfc" stroke="#9aa8b5" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="810" y="96" class="nome">Subsistema (codigo/)</text>
+
+  <!-- leitura.py -->
+  <rect x="820" y="115" width="360" height="40" class="cabecalho"/>
+  <text x="1000" y="131" text-anchor="middle" class="estereotipo">«módulo»</text>
+  <text x="1000" y="148" text-anchor="middle" class="nome">leitura.py</text>
+  <rect x="820" y="155" width="360" height="74" class="caixa"/>
+  <text x="832" y="177" class="mono">+ carregar_json(caminho): list</text>
+  <text x="832" y="197" class="mono">+ extrair_partida(partidas, id): dict</text>
+  <text x="832" y="217" class="mono">+ extrair_finalizacoes(eventos): list</text>
+
+  <!-- relatorio.py -->
+  <rect x="820" y="285" width="360" height="40" class="cabecalho"/>
+  <text x="1000" y="301" text-anchor="middle" class="estereotipo">«módulo»</text>
+  <text x="1000" y="318" text-anchor="middle" class="nome">relatorio.py</text>
+  <rect x="820" y="325" width="360" height="54" class="caixa"/>
+  <text x="832" y="347" class="mono">+ gerar_relatorio(partida,</text>
+  <text x="832" y="367" class="mono">      finalizacoes, estrategias): str</text>
+
+  <!-- metricas.py -->
+  <rect x="820" y="440" width="360" height="40" class="cabecalho"/>
+  <text x="1000" y="456" text-anchor="middle" class="estereotipo">«módulo» Strategy</text>
+  <text x="1000" y="473" text-anchor="middle" class="nome">metricas.py</text>
+  <rect x="820" y="480" width="360" height="74" class="caixa"/>
+  <text x="832" y="502" class="mono">MetricaOfensiva (abstrata)</text>
+  <text x="832" y="522" class="mono">MetricaConversoes</text>
+  <text x="832" y="542" class="mono">MetricaXG</text>
+
+  <!-- xg.py e conversoes.py -->
+  <rect x="820" y="600" width="170" height="60" class="caixa"/>
+  <text x="905" y="625" text-anchor="middle" class="nome">xg.py</text>
+  <text x="905" y="645" text-anchor="middle" class="mono">calcular_xg</text>
+  <rect x="1010" y="600" width="170" height="60" class="caixa"/>
+  <text x="1095" y="625" text-anchor="middle" class="nome">conversoes.py</text>
+  <text x="1095" y="645" text-anchor="middle" class="mono">contar_conversoes</text>
+
+  <!-- Dependências da fachada -->
+  <path d="M 710 260 H 750 V 185 H 820" class="dep"/>
+  <text x="744" y="225" text-anchor="end" class="rotulo">lê os dados</text>
+  <path d="M 710 345 H 820" class="dep"/>
+  <text x="765" y="337" text-anchor="middle" class="rotulo">gera</text>
+  <path d="M 520 384 V 515 H 820" class="dep"/>
+  <text x="530" y="505" class="rotulo">repassa as estratégias (opcional)</text>
+
+  <!-- Dependências internas -->
+  <path d="M 1000 379 V 440" class="dep"/>
+  <text x="1010" y="415" class="rotulo">usa</text>
+  <path d="M 905 554 V 600" class="dep"/>
+  <path d="M 1095 554 V 600" class="dep"/>
+
+  <!-- Legenda -->
+  <path d="M 40 680 H 90" class="dep"/>
+  <text x="100" y="684">dependência (chama / importa)</text>
+  <rect x="340" y="670" width="20" height="16" class="fachada"/>
+  <text x="370" y="684">fachada: único ponto que o cliente conhece</text>
+</svg>
