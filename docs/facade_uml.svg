@@ -34,13 +34,10 @@
   <rect x="330" y="210" width="380" height="44" class="cabecalho-fachada"/>
   <text x="520" y="228" text-anchor="middle" class="estereotipo">«facade»</text>
   <text x="520" y="246" text-anchor="middle" class="nome">AnalisadorPartida</text>
-  <rect x="330" y="254" width="380" height="54" class="fachada"/>
-  <text x="342" y="276" class="mono">- pasta_dados: str</text>
-  <text x="342" y="296" class="mono">- arquivo_partidas: str</text>
-  <rect x="330" y="308" width="380" height="76" class="fachada"/>
-  <text x="342" y="330" class="mono">+ analisar(id_partida, estrategias=None): str</text>
-  <text x="342" y="350" class="mono">- _carregar_partida(id_partida): dict</text>
-  <text x="342" y="370" class="mono">- _carregar_finalizacoes(id_partida): list</text>
+  <rect x="330" y="254" width="380" height="34" class="fachada"/>
+  <text x="342" y="276" class="mono">- fonte_dados: FonteDadosPartida</text>
+  <rect x="330" y="288" width="380" height="34" class="fachada"/>
+  <text x="342" y="310" class="mono">+ analisar(id_partida, estrategias=None): str</text>
 
   <path d="M 240 300 H 330" class="dep"/>
   <text x="285" y="292" text-anchor="middle" class="rotulo">usa</text>
@@ -49,14 +46,14 @@
   <rect x="790" y="70" width="420" height="620" rx="6" fill="#fafbfc" stroke="#9aa8b5" stroke-width="1.5" stroke-dasharray="6 4"/>
   <text x="810" y="96" class="nome">Subsistema (codigo/)</text>
 
-  <!-- leitura.py -->
+  <!-- adapter.py -->
   <rect x="820" y="115" width="360" height="40" class="cabecalho"/>
-  <text x="1000" y="131" text-anchor="middle" class="estereotipo">«módulo»</text>
-  <text x="1000" y="148" text-anchor="middle" class="nome">leitura.py</text>
+  <text x="1000" y="131" text-anchor="middle" class="estereotipo">«adapter» adapter.py</text>
+  <text x="1000" y="148" text-anchor="middle" class="nome">StatsBombAdapter</text>
   <rect x="820" y="155" width="360" height="74" class="caixa"/>
-  <text x="832" y="177" class="mono">+ carregar_json(caminho): list</text>
-  <text x="832" y="197" class="mono">+ extrair_partida(partidas, id): dict</text>
-  <text x="832" y="217" class="mono">+ extrair_finalizacoes(eventos): list</text>
+  <text x="832" y="177" class="mono">+ obter_partida(id_partida): dict</text>
+  <text x="832" y="197" class="mono">+ obter_finalizacoes(id_partida): list</text>
+  <text x="832" y="217" class="rotulo">lê os JSONs da StatsBomb via leitura.py</text>
 
   <!-- relatorio.py -->
   <rect x="820" y="285" width="360" height="40" class="cabecalho"/>
@@ -85,10 +82,10 @@
 
   <!-- Dependências da fachada -->
   <path d="M 710 260 H 750 V 185 H 820" class="dep"/>
-  <text x="744" y="225" text-anchor="end" class="rotulo">lê os dados</text>
-  <path d="M 710 345 H 820" class="dep"/>
-  <text x="765" y="337" text-anchor="middle" class="rotulo">gera</text>
-  <path d="M 520 384 V 515 H 820" class="dep"/>
+  <text x="744" y="200" text-anchor="end" class="rotulo">lê os dados</text>
+  <path d="M 710 305 H 820" class="dep"/>
+  <text x="765" y="297" text-anchor="middle" class="rotulo">gera</text>
+  <path d="M 520 322 V 515 H 820" class="dep"/>
   <text x="530" y="505" class="rotulo">repassa as estratégias (opcional)</text>
 
   <!-- Dependências internas -->
