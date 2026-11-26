@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="640" viewBox="0 0 1240 640">
+  <title>Padrão Adapter - StatsBombAdapter</title>
+  <defs>
+    <marker id="dep" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto">
+      <path d="M1 1 L11 6 L1 11" fill="none" stroke="#3d4f60" stroke-width="1.6"/>
+    </marker>
+    <marker id="realiza" viewBox="0 0 16 16" refX="15" refY="8" markerWidth="16" markerHeight="16" orient="auto">
+      <path d="M1 1 L15 8 L1 15 Z" fill="#ffffff" stroke="#3d4f60" stroke-width="1.6"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #1c2b3a; font-size: 14px; }
+      .titulo { font-size: 24px; font-weight: 700; }
+      .nome { font-size: 16px; font-weight: 700; }
+      .nome-abstrato { font-size: 16px; font-weight: 700; font-style: italic; }
+      .estereotipo { font-size: 12px; fill: #5b6b7a; }
+      .mono { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 13px; }
+      .mono-abstrato { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 13px; font-style: italic; }
+      .rotulo { font-size: 12px; fill: #3d4f60; font-style: italic; }
+      .caixa { fill: #ffffff; stroke: #3d4f60; stroke-width: 1.5; }
+      .adaptador { fill: #eaf2fb; stroke: #2f6496; stroke-width: 2; }
+      .cabecalho { fill: #f2f4f6; stroke: #3d4f60; stroke-width: 1.5; }
+      .cabecalho-adaptador { fill: #d6e6f6; stroke: #2f6496; stroke-width: 2; }
+      .dep { fill: none; stroke: #3d4f60; stroke-width: 1.5; stroke-dasharray: 7 5; marker-end: url(#dep); }
+      .realiza { fill: none; stroke: #3d4f60; stroke-width: 1.5; stroke-dasharray: 7 5; marker-end: url(#realiza); }
+    </style>
+  </defs>
+
+  <rect width="1240" height="640" fill="#ffffff"/>
+  <text x="30" y="42" class="titulo">Padrão Adapter — StatsBombAdapter</text>
+
+  <!-- Cliente -->
+  <rect x="30" y="150" width="370" height="44" class="cabecalho"/>
+  <text x="215" y="168" text-anchor="middle" class="estereotipo">«client» Facade</text>
+  <text x="215" y="186" text-anchor="middle" class="nome">AnalisadorPartida</text>
+  <rect x="30" y="194" width="370" height="34" class="caixa"/>
+  <text x="42" y="216" class="mono">- fonte_dados: FonteDadosPartida</text>
+  <rect x="30" y="228" width="370" height="34" class="caixa"/>
+  <text x="42" y="250" class="mono">+ analisar(id_partida, estrategias=None): str</text>
+
+  <!-- Target -->
+  <rect x="470" y="120" width="380" height="44" class="cabecalho"/>
+  <text x="660" y="138" text-anchor="middle" class="estereotipo">«interface» Target</text>
+  <text x="660" y="156" text-anchor="middle" class="nome-abstrato">FonteDadosPartida</text>
+  <rect x="470" y="164" width="380" height="56" class="caixa"/>
+  <text x="482" y="186" class="mono-abstrato">+ obter_partida(id_partida): dict</text>
+  <text x="482" y="206" class="mono-abstrato">+ obter_finalizacoes(id_partida): list</text>
+
+  <path d="M 400 175 H 470" class="dep"/>
+  <text x="435" y="167" text-anchor="middle" class="rotulo">usa</text>
+
+  <!-- Adapter -->
+  <rect x="470" y="330" width="380" height="44" class="cabecalho-adaptador"/>
+  <text x="660" y="348" text-anchor="middle" class="estereotipo">«adapter»</text>
+  <text x="660" y="366" text-anchor="middle" class="nome">StatsBombAdapter</text>
+  <rect x="470" y="374" width="380" height="54" class="adaptador"/>
+  <text x="482" y="396" class="mono">- pasta_dados: Path</text>
+  <text x="482" y="416" class="mono">- arquivo_partidas: str</text>
+  <rect x="470" y="428" width="380" height="56" class="adaptador"/>
+  <text x="482" y="450" class="mono">+ obter_partida(id_partida): dict</text>
+  <text x="482" y="470" class="mono">+ obter_finalizacoes(id_partida): list</text>
+
+  <path d="M 660 330 V 220" class="realiza"/>
+  <text x="672" y="280" class="rotulo">implementa</text>
+
+  <!-- Adaptee -->
+  <rect x="900" y="80" width="320" height="420" rx="6" fill="#fafbfc" stroke="#9aa8b5" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="920" y="106" class="nome">Adaptee (formato StatsBomb)</text>
+
+  <rect x="920" y="125" width="280" height="40" class="cabecalho"/>
+  <text x="1060" y="141" text-anchor="middle" class="estereotipo">«módulo»</text>
+  <text x="1060" y="158" text-anchor="middle" class="nome">leitura.py</text>
+  <rect x="920" y="165" width="280" height="74" class="caixa"/>
+  <text x="932" y="187" class="mono">+ carregar_json(caminho)</text>
+  <text x="932" y="207" class="mono">+ extrair_partida(partidas, id)</text>
+  <text x="932" y="227" class="mono">+ extrair_finalizacoes(eventos)</text>
+
+  <rect x="920" y="320" width="280" height="40" class="cabecalho"/>
+  <text x="1060" y="336" text-anchor="middle" class="estereotipo">«arquivos JSON» dados/</text>
+  <text x="1060" y="353" text-anchor="middle" class="nome">StatsBomb</text>
+  <rect x="920" y="360" width="280" height="120" class="caixa"/>
+  <text x="932" y="382" class="mono">partidas_copa_2022.json</text>
+  <text x="932" y="402" class="mono">eventos_&lt;id&gt;.json</text>
+  <text x="932" y="430" class="rotulo">match_id, home_team, location,</text>
+  <text x="932" y="448" class="rotulo">shot.outcome, shot.body_part...</text>
+  <text x="932" y="466" class="rotulo">(formato diferente do sistema)</text>
+
+  <path d="M 1060 239 V 320" class="dep"/>
+  <text x="1070" y="284" class="rotulo">lê</text>
+
+  <path d="M 850 400 H 880 V 202 H 920" class="dep"/>
+  <text x="874" y="300" text-anchor="end" class="rotulo">reaproveita</text>
+
+  <!-- Formato do sistema -->
+  <rect x="30" y="330" width="370" height="154" class="caixa"/>
+  <text x="42" y="354" class="nome">Formato do sistema (Target)</text>
+  <text x="42" y="382" class="mono">partida = {nome, data, equipes}</text>
+  <text x="42" y="410" class="mono">finalizacao = {equipe, resultado,</text>
+  <text x="42" y="430" class="mono">  distancia, angulo, parte_corpo}</text>
+  <text x="42" y="462" class="rotulo">o que o relatório e as métricas esperam</text>
+  <path d="M 470 456 H 400" class="dep"/>
+  <text x="435" y="448" text-anchor="middle" class="rotulo">devolve</text>
+
+  <!-- Legenda -->
+  <path d="M 40 560 H 90" class="dep"/>
+  <text x="100" y="564">dependência (chama / importa)</text>
+  <path d="M 340 560 H 395" class="realiza"/>
+  <text x="405" y="564">implementa a interface</text>
+  <rect x="600" y="550" width="20" height="16" class="adaptador"/>
+  <text x="630" y="564">adaptador: traduz o formato StatsBomb para o formato do sistema</text>
+  <text x="40" y="604" class="rotulo">Itálico = abstrato (classe ABC e métodos @abstractmethod).</text>
+</svg>
