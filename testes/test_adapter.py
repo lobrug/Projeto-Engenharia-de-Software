@@ -30,7 +30,7 @@ class TestStatsBombAdapter(unittest.TestCase):
         self.assertEqual(len(finalizacoes), 30)
         for finalizacao in finalizacoes:
             with self.subTest(finalizacao=finalizacao):
-                self.assertEqual(set(finalizacao), {"equipe", "resultado", "distancia", "angulo", "parte_corpo"})
+                self.assertEqual(set(finalizacao), {"equipe", "resultado", "distancia", "angulo", "parte_corpo", "tipo"})
 
     def test_rejeita_partida_inexistente(self):
         with self.assertRaises(ValueError):

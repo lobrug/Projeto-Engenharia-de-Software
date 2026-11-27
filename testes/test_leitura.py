@@ -11,7 +11,8 @@ def criar_chute(equipe, resultado, location, periodo=1, parte_corpo="Right Foot"
         "location": location,
         "shot": {
             "outcome": {"name": resultado},
-            "body_part": {"name": parte_corpo}
+            "body_part": {"name": parte_corpo},
+            "type": {"name": "Open Play"}
         }
     }
 
