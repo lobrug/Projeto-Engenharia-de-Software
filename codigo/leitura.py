@@ -35,7 +35,8 @@ def extrair_finalizacoes(eventos):
             "resultado": evento["shot"]["outcome"]["name"],
             "distancia": calcular_distancia(x, y),
             "angulo": calcular_angulo(x, y),
-            "parte_corpo": evento["shot"]["body_part"]["name"]
+            "parte_corpo": evento["shot"]["body_part"]["name"],
+            "tipo": evento["shot"]["type"]["name"]
         })
     return finalizacoes
 

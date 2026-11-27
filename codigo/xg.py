@@ -6,6 +6,9 @@ COEF_ANGULO = 1.523290920858915
 
 def calcular_xg(finalizacao):
 
+    if finalizacao.get("tipo") == "Penalty":
+        return 0.7835
+
     for campo in ("distancia", "angulo", "parte_corpo"):
         if campo not in finalizacao:
             raise ValueError(f"Campo obrigatório ausente: {campo}")
