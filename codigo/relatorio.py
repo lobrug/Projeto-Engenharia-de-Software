@@ -1,8 +1,7 @@
-from codigo.metricas import MetricaConversoes, MetricaXG
-
+from codigo.metricas import MetricaConversoes, MetricaXG, MetricaFinalizacoesNoAlvo, MetricaPrecisao, MetricaXGPorFinalizacao, MetricaGrandesOportunidades
 
 def gerar_relatorio(partida, finalizacoes, estrategias=None):
-    if estrategias is None: estrategias = [MetricaConversoes(), MetricaXG()]
+    if estrategias is None: estrategias = [MetricaConversoes(), MetricaXG(), MetricaFinalizacoesNoAlvo(), MetricaPrecisao(), MetricaXGPorFinalizacao(), MetricaGrandesOportunidades()]
     linhas = [f"Relatório da partida: {partida['nome']} ({partida['data']})"]
 
     for equipe in partida["equipes"]:
